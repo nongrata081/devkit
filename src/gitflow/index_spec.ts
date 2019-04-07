@@ -6,10 +6,10 @@ import * as path from 'path';
 const collectionPath = path.join(__dirname, '../collection.json');
 
 
-describe('devkit', () => {
+describe('gitflow', () => {
   it('works', () => {
     const runner = new SchematicTestRunner('schematics', collectionPath);
-    const tree = runner.runSchematic('devkit', {}, Tree.empty());
+    const tree = runner.runSchematic('gitflow', {}, Tree.empty());
 
     expect(tree.files).toEqual([]);
   });

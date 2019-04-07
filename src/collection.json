@@ -1,9 +1,33 @@
 {
   "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
   "schematics": {
-    "devkit": {
-      "description": "A blank schematic.",
-      "factory": "./devkit/index#devkit"
+    "gitflow": {
+      "description": "Programmatically enforce branch names according to gitflow",
+      "factory": "./gitflow/index#gitflow"
+    },
+    "changelog": {
+      "description": "Enable changelog generation from conventional commits",
+      "factory": "./changelog/index#changelog"
+    },
+    "commitlint": {
+      "description": "Lint commits against conventional commit format",
+      "factory": "./commitlint/index#commitlint"
+    },
+    "commitprompt": {
+      "description": "Command line prompt for making commits following conventional commit format",
+      "factory": "./commitprompt/index#commitprompt"
+    },
+    "node": {
+      "description": "Programmatically enforce node version",
+      "factory": "./node/index#node"
+    },
+    "recommended-bump": {
+      "description": "Get a recommended version bump based on conventional commits",
+      "factory": "./recommended-bump/index#recommendedBump"
+    },
+    "yarn": {
+      "description": "Programmatically enforce yarn",
+      "factory": "./yarn/index#yarn"
     }
   }
 }
