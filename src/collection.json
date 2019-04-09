@@ -25,9 +25,9 @@
       "description": "Get a recommended version bump based on conventional commits",
       "factory": "./recommended-bump/index#recommendedBump"
     },
-    "yarn": {
+    "enforce-yarn": {
       "description": "Programmatically enforce yarn",
-      "factory": "./yarn/index#yarn"
+      "factory": "./enforce-yarn/index#enforceYarn"
     }
   }
 }
