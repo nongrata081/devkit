@@ -1,6 +1,11 @@
 {
   "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
   "schematics": {
+    "devkit": {
+      "description": "Choose devkit tools to be implemented with cli-prompt",
+      "factory": "./devkit/index#devkit",
+      "schema": "./devkit/schema.json"
+    },
     "gitflow": {
       "description": "Programmatically enforce branch names according to gitflow",
       "factory": "./gitflow/index#gitflow"

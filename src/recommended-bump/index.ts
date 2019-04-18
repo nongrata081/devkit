@@ -31,9 +31,14 @@ export function recommendedBump(_options: any): Rule {
     }
 
     tree.overwrite('package.json', JSON.stringify(packageJson, null, 2));
-    _context.logger.log('info', `Added "${recommendedVersionBumpScript}" to "${scripts}" in package.json`);
-    _context.logger.log('info', `Added "${recommendedVersionBump}@${version}" to ${devDeps}`);
-    _context.addTask(new NodePackageInstallTask());
+
+    _context.logger.log('info', `
+    recommended:version:bump
+        added "${recommendedVersionBumpScript}" to "${scripts}" to package.json
+        added "${recommendedVersionBump}@${version}" to ${devDeps} to package.json
+    `);
+
+    _context.addTask(new NodePackageInstallTask({packageManager: "yarn"}));
 
     return tree;
   };

@@ -65,11 +65,14 @@ export function commitlint(_options: any): Rule {
     }
 
     tree.overwrite('package.json', JSON.stringify(packageJson, null, 2));
-    _context.logger.log('info', `Added "${commitlintCliDep}@${version}" to "${devDeps}" in package.json`);
-    _context.logger.log('info', `Added "${configConventionalDep}@${version}" to "${devDeps}" in package.json`);
-    _context.logger.log('info', `Added "${husky}@${version}" to "${devDeps}" in package.json`);
-    _context.logger.log('info', `Added "${commitMsgScript}" to "husky.hooks.commit-msg" in package.json`);
-    _context.addTask(new NodePackageInstallTask());
+
+    _context.logger.log('info', `
+    commit:lint
+        added ${commitlintCliDep}@${version}, ${configConventionalDep}@${version}, ${husky}@${version} to ${devDeps} to package.json
+        added ${commitMsgScript} to husky.hooks.commit-msg to package.json
+    `);
+
+    _context.addTask(new NodePackageInstallTask({packageManager: "yarn"}));
 
     return tree;
   };

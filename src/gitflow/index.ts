@@ -48,9 +48,14 @@ export function gitflow(_options: any): Rule {
     }
 
     tree.overwrite('package.json', JSON.stringify(packageJson, null, 2));
-    _context.logger.log('info', `Added "${gitFlowScript}" to "${scripts}" in package.json`);
-    _context.logger.log('info', `Added "${huskyDep}@${version}", "${gitflowDep}@${version}" to ${devDeps}`);
-    _context.addTask(new NodePackageInstallTask());
+
+    _context.logger.log('info', `
+    enforce:gitflow
+        added "${gitFlowScript}" to "${scripts}" to package.json
+        added "${huskyDep}@${version}", "${gitflowDep}@${version}" to ${devDeps}
+    `);
+
+    _context.addTask(new NodePackageInstallTask({packageManager: "yarn"}));
 
     return tree;
   };

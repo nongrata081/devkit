@@ -25,8 +25,11 @@ export function enforceYarn(_options: any): Rule {
 
     tree.create(enforceScriptPath, Buffer.from(enforceYarnNodeScript));
 
-    _context.logger.log('info', `Added "${preinstallScript}" to "${scripts}" in package.json`);
-    _context.logger.log('info', `Added enforce yarn node script to ${enforceScriptPath}`);
+    _context.logger.log('info', `
+    enforce:yarn
+        added "${preinstallScript}" to "${scripts}" to package.json
+        added enforce yarn node script to ${enforceScriptPath}
+    `);
 
     return tree;
   };

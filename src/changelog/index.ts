@@ -12,7 +12,7 @@ export function changelog(_options: any): Rule {
     const packageJson = JSON.parse(packageJsonBuffer.toString());
 
     const scripts = "scripts";
-    const changelogScript = "changelog";
+    const changelogScript = "generate:changelog";
     const changelogScriptCmd = "./node_modules/.bin/conventional-changelog -p angular -i CHANGELOG.md -s -r 0";
     if (!packageJson[scripts]) {
       packageJson[scripts] = {};
@@ -30,9 +30,12 @@ export function changelog(_options: any): Rule {
     }
 
     tree.overwrite('package.json', JSON.stringify(packageJson, null, 2));
-    _context.logger.log('info', `Added "${changelogScript}" to "${scripts}" in package.json`);
-    _context.logger.log('info', `Added "${changelog}@${version}" to ${devDeps}`);
-    _context.addTask(new NodePackageInstallTask());
+    _context.logger.log('info', `
+    generate:changelog
+        added "${changelog}@${version}" to "${devDeps}"
+        added "${changelogScript}" to "${scripts}"
+    `);
+    _context.addTask(new NodePackageInstallTask({packageManager: "yarn"}));
 
     return tree;
   };

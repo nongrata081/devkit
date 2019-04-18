@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "id": "devkitSchematics",
+  "title": "@vaan/devkit options schema",
+  "type": "object",
+  "description": "List of options for @vaan/devkit schematic",
+  "properties": {
+    "tools": {
+      "type": "array",
+      "description": "Tools from @vaan/devkit to scaffold in your project",
+      "x-prompt": {
+        "message": "Which tools from @vaan/devkit do you want to scaffold?",
+        "type": "list",
+        "multiselect": true,
+        "items": [
+          "generate:changelog",
+          "commit:lint",
+          "commit:prompt",
+          "enforce:yarn",
+          "enforce:gitflow",
+          "enforce:node:version",
+          "recommended:version:bump"
+        ]
+      }
+    }
+  }
+}

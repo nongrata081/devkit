@@ -52,10 +52,14 @@ export function commitprompt(_options: any): Rule {
     }
 
     tree.overwrite('package.json', JSON.stringify(packageJson, null, 2));
-    _context.logger.log('info', `Added "${commitizen}@${version}" to "${devDeps}" in package.json`);
-    _context.logger.log('info', `Added "${commitizenConfig}@${version}" to "${devDeps}" in package.json`);
-    _context.logger.log('info', `Added "${commitizenConfig}" to "config.commitizen.path" in package.json`);
-    _context.addTask(new NodePackageInstallTask());
+
+    _context.logger.log('info', `
+    commit:prompt
+        added "${commitizen}@${version}", "${commitizenConfig}@${version}" to "${devDeps}" to package.json
+        added "${commitizenConfig}" to "config.commitizen.path" to package.json
+    `);
+
+    _context.addTask(new NodePackageInstallTask({packageManager: "yarn"}));
 
     return tree;
   };
