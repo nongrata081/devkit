@@ -50,8 +50,15 @@ export interface CustomObj {
 }
 
 export interface PkgJsonContent {
-  pkgJsonDependencies: PkgJsonDependencies,
+  pkgJsonDependencies?: PkgJsonDependencies,
   pkgJsonScripts?: PkgJsonScripts,
   husky?: Husky,
   customObj?: CustomObj
+}
+
+export type Files = File[];
+
+export interface File {
+  path: string
+  content: string
 }

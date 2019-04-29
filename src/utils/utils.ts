@@ -1,5 +1,5 @@
 import { SchematicContext, Tree } from '@angular-devkit/schematics';
-import { PkgJsonContent } from './interface';
+import { Files, PkgJsonContent } from './interface';
 
 function sortObjectByKeys(obj: any) {
   return Object.keys(obj)
@@ -29,24 +29,26 @@ export function addContentToPackageJson(
       });
     }
 
-    // Dependencies
-    if (content.pkgJsonDependencies.dependencies) {
-      if (!pkgJson.dependencies) pkgJson.dependencies = {};
-      content.pkgJsonDependencies.dependencies.forEach(dependency => {
-        pkgJson.dependencies[dependency.pkgName] = dependency.version;
-        _context.logger.log('info', `✅️ Added into dependencies: "${dependency.pkgName}":"${dependency.version}"`);
-      });
-      pkgJson.dependencies = sortObjectByKeys(pkgJson.dependencies);
-    }
+    if (content.pkgJsonDependencies) {
+      // Dependencies
+      if (content.pkgJsonDependencies.dependencies) {
+        if (!pkgJson.dependencies) pkgJson.dependencies = {};
+        content.pkgJsonDependencies.dependencies.forEach(dependency => {
+          pkgJson.dependencies[dependency.pkgName] = dependency.version;
+          _context.logger.log('info', `✅️ Added into dependencies: "${dependency.pkgName}":"${dependency.version}"`);
+        });
+        pkgJson.dependencies = sortObjectByKeys(pkgJson.dependencies);
+      }
 
-    // DevDependencies
-    if (content.pkgJsonDependencies.devDependencies) {
-      if (!pkgJson.devDependencies) pkgJson.devDependencies = {};
-      content.pkgJsonDependencies.devDependencies.forEach(dependency => {
-        pkgJson.devDependencies[dependency.pkgName] = dependency.version;
-        _context.logger.log('info', `✅️ Added into devDependencies: "${dependency.pkgName}":"${dependency.version}"`);
-      });
-      pkgJson.devDependencies = sortObjectByKeys(pkgJson.devDependencies);
+      // DevDependencies
+      if (content.pkgJsonDependencies.devDependencies) {
+        if (!pkgJson.devDependencies) pkgJson.devDependencies = {};
+        content.pkgJsonDependencies.devDependencies.forEach(dependency => {
+          pkgJson.devDependencies[dependency.pkgName] = dependency.version;
+          _context.logger.log('info', `✅️ Added into devDependencies: "${dependency.pkgName}":"${dependency.version}"`);
+        });
+        pkgJson.devDependencies = sortObjectByKeys(pkgJson.devDependencies);
+      }
     }
 
     // Custom Object
@@ -93,7 +95,6 @@ export function addContentToPackageJson(
           }
         }
       });
-
     }
 
     tree.overwrite('package.json', JSON.stringify(pkgJson, null, 2));
@@ -102,4 +103,13 @@ export function addContentToPackageJson(
   } else {
     _context.logger.log('error', `⚠️️ Not an npm project. Couldn't find package.json`);
   }
+}
+
+export function addFilesToProject(tree: Tree, _context: SchematicContext, files: Files) {
+  files.forEach(file => {
+    tree.create(file.path, file.content);
+    _context.logger.log('info', `✅ Created ${file.path}`);
+  });
+
+  return tree;
 }

@@ -1,35 +1,29 @@
-import { Rule, SchematicContext, SchematicsException, Tree } from '@angular-devkit/schematics';
+import { Rule, SchematicContext, Tree } from '@angular-devkit/schematics';
 import { enforceYarnNodeScript } from './enforce-yarn-node-script';
+import { addContentToPackageJson, addFilesToProject } from '../utils';
+import { Files, PkgJsonContent } from '../utils/interface';
+
+const pkgJsonContent: PkgJsonContent = {
+  pkgJsonScripts: [
+    { npmScriptKey: "preinstall", npmScriptValue: "node scripts/enforce-yarn.js" }
+  ]
+};
+
+const files: Files = [
+  {
+    path: "scripts/enforce-yarn.js",
+    content: enforceYarnNodeScript
+  }
+];
+
 
 export function enforceYarn(_options: any): Rule {
   return (tree: Tree, _context: SchematicContext) => {
-
-    const packageJsonBuffer = tree.read("package.json");
-    if (!packageJsonBuffer) {
-      throw new SchematicsException("Not an npm project. Couldn't find package.json");
-    }
-
-    const packageJson = JSON.parse(packageJsonBuffer.toString());
-
-    const scripts = "scripts";
-    const preinstallScript = "preinstall";
-    const preinstallScriptCmd = "node scripts/enforce-yarn.js";
-    if (!packageJson[scripts]) {
-      packageJson[scripts] = {};
-    }
-    packageJson[scripts][preinstallScript] = preinstallScriptCmd;
-
-    tree.overwrite('package.json', JSON.stringify(packageJson, null, 2));
-
-    const enforceScriptPath = "scripts/enforce-yarn.js";
-
-    tree.create(enforceScriptPath, Buffer.from(enforceYarnNodeScript));
-
-    _context.logger.log('info', `
-    enforce:yarn
-        added "${preinstallScript}" to "${scripts}" to package.json
-        added enforce yarn node script to ${enforceScriptPath}
-    `);
+    addContentToPackageJson(tree, _context, pkgJsonContent);
+    addFilesToProject(tree, _context, files);
+    // const enforceScriptPath = "scripts/enforce-yarn.js";
+    // tree.create(enforceScriptPath, Buffer.from(enforceYarnNodeScript));
+    // _context.logger.log('info', `enforce:yarn - added enforce yarn node script to ${enforceScriptPath}`);
 
     return tree;
   };
