@@ -103,3 +103,15 @@ npm test
 ```
 
 All tests must pass. Please add tests for any new functionality.
+
+---
+
+In order to test schematics locally in debug mode (without writing files) run
+```
+schematics .:schematicName
+```
+
+or in normal mode
+```
+schematics .:schematicName --debug=false
+```
