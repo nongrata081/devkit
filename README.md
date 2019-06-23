@@ -1,3 +1,9 @@
+# devkit schematics usage
+Install angular schematics globally
+```
+yarn global add @angular-devkit/schematics-cli
+```
+
 # Getting Started With Schematics
 
 This repository is a basic Schematic implementation that serves as a starting point to create and publish Schematics to NPM.
