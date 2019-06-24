@@ -11,8 +11,13 @@ yarn add -D @rubedo/schematics
 
 From your project directory run
 ```
-schematics @rubedo/devkit:
+schematics @rubedo/devkit:devkit
 ```
+
+You will get a CLI checklist, a multi-select from which you can check with `Space` button tools that you want to be scaffolded.
+You can select multiple tools to be scaffolded at once. After you've selected desired tools for scaffolding, hit `Enter`.
+Your package.json and / or project file structure will be updated depending on which tools you chose. You will get a console output
+stating what was updated and how (package.json: scripts, dependencies, devDependencies / project file structure). 
 
 # Getting Started With Schematics
 
