@@ -7,7 +7,7 @@ import { enforceYarn } from '../enforce-yarn';
 import { node } from '../node/index';
 import { recommendedBump } from '../recommended-bump/index';
 
-export function devkit(_options: any): Rule {
+export default function (_options: any): Rule {
   // @ts-ignore
   return (tree: Tree, _context: SchematicContext) => {
 

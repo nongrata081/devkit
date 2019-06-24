@@ -4,6 +4,16 @@ Install angular schematics globally
 yarn global add @angular-devkit/schematics-cli
 ```
 
+Install rubedo schematics to your project
+```
+yarn add -D @rubedo/schematics
+```
+
+From your project directory run
+```
+schematics @rubedo/devkit:
+```
+
 # Getting Started With Schematics
 
 This repository is a basic Schematic implementation that serves as a starting point to create and publish Schematics to NPM.
