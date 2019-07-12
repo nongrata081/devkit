@@ -7,6 +7,7 @@ import { enforceYarn } from '../enforce-yarn';
 import { node } from '../node/index';
 import { recommendedBump } from '../recommended-bump/index';
 import { gitStandup } from '../git-standup';
+import {jsonServer} from '../json-server/index';
 
 export default function (_options: any): Rule {
   // @ts-ignore
@@ -20,7 +21,8 @@ export default function (_options: any): Rule {
       _options.tools.indexOf("enforce:gitflow") > -1 ? gitflow({}) : noop(),
       _options.tools.indexOf("enforce:yarn") > -1 ? enforceYarn({}) : noop(),
       _options.tools.indexOf("enforce:node:version") > -1 ? node({}) : noop(),
-      _options.tools.indexOf("git:standup") > -1 ? gitStandup({}) : noop()
+      _options.tools.indexOf("git:standup") > -1 ? gitStandup({}) : noop(),
+      _options.tools.indexOf("json:server") > -1 ? jsonServer({}) : noop()
     ];
 
     return chain(chains);

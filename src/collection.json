@@ -37,6 +37,10 @@
     "git-standup": {
       "description": "Log git activity in repo in readable way",
       "factory": "./git-standup/index#gitStandup"
+    },
+    "json-server": {
+      "description": "Get a full fake REST API with zero coding in less than 30 seconds",
+      "factory": "./json-server/index#jsonServer"
     }
   }
 }

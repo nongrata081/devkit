@@ -20,7 +20,8 @@
           "enforce:gitflow",
           "enforce:node:version",
           "recommended:version:bump",
-          "git:standup"
+          "git:standup",
+          "json:server"
         ]
       }
     }
