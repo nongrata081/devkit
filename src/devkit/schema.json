@@ -19,7 +19,8 @@
           "enforce:yarn",
           "enforce:gitflow",
           "enforce:node:version",
-          "recommended:version:bump"
+          "recommended:version:bump",
+          "git:standup"
         ]
       }
     }

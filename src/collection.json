@@ -33,6 +33,10 @@
     "enforce-yarn": {
       "description": "Programmatically enforce yarn",
       "factory": "./enforce-yarn/index#enforceYarn"
+    },
+    "git-standup": {
+      "description": "Log git activity in repo in readable way",
+      "factory": "./git-standup/index#gitStandup"
     }
   }
 }
