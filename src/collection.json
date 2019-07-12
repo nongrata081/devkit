@@ -45,6 +45,10 @@
     "compodoc": {
       "description": "Generate your Angular / Nest.js project documentation in seconds",
       "factory": "./compodoc/index#compodoc"
+    },
+    "lighthouse": {
+      "description": "Automated auditing, performance metrics, and best practices for the web",
+      "factory": "./lighthouse/index#lighthouse"
     }
   }
 }

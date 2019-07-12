@@ -22,7 +22,8 @@
           "recommended:version:bump",
           "git:standup",
           "json:server",
-          "compodoc"
+          "compodoc",
+          "lighthouse"
         ]
       }
     }

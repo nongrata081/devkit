@@ -9,6 +9,7 @@ import { recommendedBump } from '../recommended-bump/index';
 import { gitStandup } from '../git-standup';
 import { jsonServer } from '../json-server/index';
 import { compodoc } from '../compodoc';
+import { lighthouse } from '../lighthouse';
 
 export default function (_options: any): Rule {
   // @ts-ignore
@@ -24,7 +25,8 @@ export default function (_options: any): Rule {
       _options.tools.indexOf("enforce:node:version") > -1 ? node({}) : noop(),
       _options.tools.indexOf("git:standup") > -1 ? gitStandup({}) : noop(),
       _options.tools.indexOf("json:server") > -1 ? jsonServer({}) : noop(),
-      _options.tools.indexOf("compodoc") > -1 ? compodoc({}) : noop()
+      _options.tools.indexOf("compodoc") > -1 ? compodoc({}) : noop(),
+      _options.tools.indexOf("lighthouse") > -1 ? lighthouse({}) : noop()
     ];
 
     return chain(chains);
