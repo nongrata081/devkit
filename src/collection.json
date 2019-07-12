@@ -41,6 +41,10 @@
     "json-server": {
       "description": "Get a full fake REST API with zero coding in less than 30 seconds",
       "factory": "./json-server/index#jsonServer"
+    },
+    "compodoc": {
+      "description": "Generate your Angular / Nest.js project documentation in seconds",
+      "factory": "./compodoc/index#compodoc"
     }
   }
 }
